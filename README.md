@@ -130,15 +130,16 @@ Feito para criar funcões que possam ser usadas mais de uma vez no código e tam
 
 
 #### TO DO WEB
-- [ ] Install `vuetify` and config theme colors.
-- [ ] Create Login page.
+- [x] Install `vuetify` and config theme colors.
+- [x] Create Login page.
+- [x] Create Register page.
 - [ ] Create Dashboard page.
 - [ ] Create Students page.
-- [ ] Configure `vue-router`.
+- [x] Configure `vue-router`.
 - [ ] Configure `cypress` and automatized tests.
-- [ ] Create middleware authenticate private routes.
+- [x] Create middleware authenticate private routes.
 - [ ] Adding `sweet-alert2` for return messages in application.
-- [ ] Install axios and configure `api.ts`
+- [x] Install axios and configure `api.ts`
 
 ---
 
