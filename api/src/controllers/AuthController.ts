@@ -11,7 +11,7 @@ export class AuthController {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array() });
     }
 
     const { name, email, password } = req.body;
@@ -29,7 +29,7 @@ export class AuthController {
     const authRepository = new AuthRepository();
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array() });
     }
 
     const { email, password } = req.body;
@@ -40,5 +40,14 @@ export class AuthController {
     });
 
     return res.send(apiMessage(true, 200, "Login successful", user));
+  }
+
+  async auth(req: Request, res: Response) {
+    const { user_id } = req;
+    const authRepository = new AuthRepository();
+
+    const user = await authRepository.auth(Number(user_id));
+
+    return res.json(user);
   }
 }

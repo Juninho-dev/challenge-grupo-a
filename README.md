@@ -25,6 +25,8 @@
 
 O desafio consiste em uma aplicação onde seja possível realizar a matrícula dos alunos na turma de programação web da instituição `Edtech`.
 
+---
+
 ## 👨‍💻 Tecnologias Utilizadas
 
 - <a href="https://nodejs.org" target="_blank" rel="noopener">Node.JS</a>;
@@ -36,6 +38,8 @@ O desafio consiste em uma aplicação onde seja possível realizar a matrícula 
 - <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite.JS</a>.
 - <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a>.
 
+---
+
 ## ⁉ Primeiros passos
 
 ### 🤔 Pré-requisitos
@@ -45,6 +49,8 @@ Para conseguir utilizar o projeto e contribuir nele, basta seguir as instruçõe
 - O **<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>** é **OBRIGATÓRIO** para executar esse projeto e é **RECOMENDADO** usar a versão LTS.
 - O **<a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a>** ou **<a href="https://yarnpkg.com/" target="_blank" rel="noopener">Yarn</a>** são **OBRIGATÓRIO** para o gerenciamento dos pacotes da aplicação.
 - O **<a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>** é **OBRIGATÓRIO** para o controle de versão do projeto.
+
+---
 
 ### 📝 Passo a passo
 
@@ -72,11 +78,42 @@ Primeiro clone o repositório em seu computador, por meio do terminal utilizando
   # Execute o comando abaixo para iniciar o servidor
   $ yarn dev
 ```
+---
 ## 💯 Padrões do projeto
 
  - SOLID
+ - MVC
  - Repository Pattern
 
+ ---
+### Documentação da arquitetura
+ O projeto esta dividido em:
+ - **Controller**
+ - **Middleware**
+ - **Repositories**
+ - **Validators**
+ - **Routes**
+ - **Helpers**
+
+## Controller
+É responsável por intermediar as requisições enviadas pelo Front com as respostas fornecidas pelo Model, processando os dados que o usuário informou e repassando para outras camadas, utilizando a arquitetura MVC.
+
+## Middleware
+Responsável por barrar as requisições e manipular as informações. Foi criado 2 middlewares, um se chama `authenticateToken` sendo responsável por verificar se o usuário esta autenticado na plataforma, o outro se chama `errorMiddleware` responsável por tratar os erros da aplicação utilizando o padrão `apiMessage`.
+
+## Repositories
+Responsável por implementar as regras de negócio no que se refere aos modelos de banco de dados.
+
+## Validators
+Responsável por tratar e validar as informações enviadas pelo Front.
+
+## Routes
+Responsável por conter todas as rotas da `API`.
+
+## Helpers
+Feito para criar funcões que possam ser usadas mais de uma vez no código e tambem manter o código limpo.
+
+---
 ### 🚧 Lista de Atividades
 
 #### TO DO API
@@ -87,8 +124,9 @@ Primeiro clone o repositório em seu computador, por meio do terminal utilizando
 - [x] Create `Middleware` authenticate.
 - [x] Implementing tratative errors.
 - [x] Use the default response api.
-- [ ] Create students routes.
+- [x] Create students routes.
 - [ ] Create `swagger` documentation.
+- [ ] Create tests.
 
 
 #### TO DO WEB

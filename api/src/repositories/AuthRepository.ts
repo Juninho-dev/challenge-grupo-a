@@ -61,4 +61,14 @@ export class AuthRepository {
       user,
     };
   }
+
+  async auth(userId: number) {
+    const user = await prisma.user.findFirst({
+      where: {
+        id: userId,
+      },
+    });
+
+    return user;
+  }
 }
