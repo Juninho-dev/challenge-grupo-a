@@ -5,7 +5,7 @@
       <h1>Bem vindo ao teste da +A Educação</h1>
     </div>
     <div class="mt-10">
-      <RegisterCardForm />
+      <RegisterCardForm @register="handleRegister" />
     </div>
   </v-container>
 </template>
@@ -14,6 +14,8 @@
 import { defineComponent } from "vue";
 import HeaderVue from "@/components/Header.vue";
 import RegisterCardForm from "../components/RegisterCardForm.vue";
+import { register } from "@/services/auth";
+import { getError } from "@/helpers/getError";
 
 export default defineComponent({
   name: "RegisterPage",
@@ -21,17 +23,25 @@ export default defineComponent({
     HeaderVue,
     RegisterCardForm,
   },
+  methods: {
+    async handleRegister(name: string, email: string, password: string) {
+      try {
+        const response = await register({ name, email, password });
+
+        if (response && response.isSuccess) {
+          localStorage.setItem("token", response.payload.token);
+          localStorage.setItem("user", JSON.stringify(response.payload.user));
+          this.$router.push("/dashboard");
+        }
+      } catch (error) {
+        const tratativeError = getError(error, "Erro ao registrar usuário");
+        this.$swal({
+          title: tratativeError.title,
+          text: tratativeError.message,
+          icon: "error",
+        });
+      }
+    },
+  },
 });
 </script>
-
-<style>
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #2c3b48;
-}
-</style>

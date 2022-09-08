@@ -11,7 +11,9 @@ export class AuthController {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res
+        .status(422)
+        .send(apiMessage(false, 422, "Validation error", errors.array()));
     }
 
     const { name, email, password } = req.body;
@@ -29,7 +31,9 @@ export class AuthController {
     const authRepository = new AuthRepository();
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res
+        .status(422)
+        .send(apiMessage(false, 422, "Validation error", errors.array()));
     }
 
     const { email, password } = req.body;
@@ -48,6 +52,6 @@ export class AuthController {
 
     const user = await authRepository.auth(Number(user_id));
 
-    return res.json(user);
+    return res.send(apiMessage(true, 200, "User authenticated", user));
   }
 }

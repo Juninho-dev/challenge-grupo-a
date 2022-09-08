@@ -39,7 +39,7 @@ export const authUser = async () => {
 export const testTokenValid = async () => {
   const { data } = await api.get("auth");
 
-  if (data && !data.success) {
+  if (data && !data.isSuccess) {
     return false;
   }
 

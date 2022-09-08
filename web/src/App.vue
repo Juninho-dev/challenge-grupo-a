@@ -1,7 +1,7 @@
 <template>
   <v-app theme="dark">
     <v-main>
-      <router-view :key="$route.path" />
+      <router-view />
     </v-main>
   </v-app>
 </template>
@@ -19,3 +19,23 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+a {
+  text-decoration: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #2c3b48;
+}
+
+div.swal2-container {
+  z-index: 999999999;
+}
+</style>

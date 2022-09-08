@@ -19,7 +19,7 @@ export class AuthRepository {
     });
 
     if (userAlreadyExists) {
-      throw new Error("User already exists");
+      throw new Error("Usuário já existe");
     }
 
     const hashedPassword = await hash(password, 10);
@@ -45,13 +45,13 @@ export class AuthRepository {
     });
 
     if (!user) {
-      throw new Error("User does not exists");
+      throw new Error("Usuário não existe");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Incorrect password");
+      throw new Error("Senha incorreta");
     }
 
     const token = generateToken({ email }, String(user.id));

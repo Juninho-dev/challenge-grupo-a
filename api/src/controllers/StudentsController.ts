@@ -19,7 +19,9 @@ export class StudentsController {
     const { name, email, cpf, ra } = req.body;
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res
+        .status(422)
+        .send(apiMessage(false, 422, "Validation error", errors.array()));
     }
 
     const studentsRepository = new StudentsRepository();
@@ -41,7 +43,9 @@ export class StudentsController {
     const { id } = req.params;
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res
+        .status(422)
+        .send(apiMessage(false, 422, "Validation error", errors.array()));
     }
 
     const studentsRepository = new StudentsRepository();

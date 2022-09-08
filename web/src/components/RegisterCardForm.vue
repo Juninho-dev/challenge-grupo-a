@@ -50,6 +50,7 @@
         size="large"
         :disabled="!valid"
         @click="register"
+        :loading="loading"
       >
         Entrar
       </v-btn>
@@ -69,10 +70,11 @@ export default defineComponent({
       email: "",
       password: "",
       showPassword: false,
+      loading: false,
       nameRules: [
         (v: string) => !!v || "O nome é obrigatório",
         (v: string) =>
-          (v && v.length <= 100) || "O nome deve ter no máximo 20 caracteres",
+          (v && v.length <= 100) || "O nome deve ter no máximo 100 caracteres",
       ],
 
       emailRules: [
@@ -97,7 +99,12 @@ export default defineComponent({
   emits: ["register"],
   methods: {
     register() {
+      this.loading = true;
       this.$emit("register", this.name, this.email, this.password);
+
+      setTimeout(() => {
+        this.loading = false;
+      }, 2000);
     },
   },
 });
