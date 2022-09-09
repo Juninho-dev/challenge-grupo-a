@@ -1,6 +1,6 @@
 import { prisma } from "../database/client";
 
-interface IStudent {
+export interface IStudent {
   user_id: number;
   name: string;
   email: string;
@@ -20,6 +20,17 @@ export class StudentsRepository {
   }
 
   async create({ name, user_id, email, cpf, ra }: IStudent) {
+
+    const findStudent = await prisma.student.findFirst({
+      where: {
+        ra,
+      },
+    });
+
+    if (findStudent) {
+      throw new Error("Aluno já cadastrado");
+    }
+
     const student = await prisma.student.create({
       data: {
         name,
@@ -63,6 +74,6 @@ export class StudentsRepository {
         id,
       },
     });
-    return student;
+    return 'ok';
   }
 }

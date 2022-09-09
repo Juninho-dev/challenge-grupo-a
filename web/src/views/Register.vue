@@ -29,9 +29,10 @@ export default defineComponent({
         const response = await register({ name, email, password });
 
         if (response && response.isSuccess) {
-          localStorage.setItem("token", response.payload.token);
-          localStorage.setItem("user", JSON.stringify(response.payload.user));
-          this.$router.push("/dashboard");
+          setTimeout(() => {
+            this.$router.push("/login");
+          }, 1000);
+          this.$swal("Sucesso!", "Cadastro realizado com sucesso!", "success");
         }
       } catch (error) {
         const tratativeError = getError(error, "Erro ao registrar usuário");

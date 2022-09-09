@@ -23,7 +23,7 @@ export class AuthController {
       password,
     });
 
-    return res.json(user);
+    return res.send(apiMessage(true, 200, "User registered", user));
   }
 
   async login(req: Request, res: Response) {

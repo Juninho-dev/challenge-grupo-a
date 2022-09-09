@@ -126,19 +126,19 @@ Feito para criar funcões que possam ser usadas mais de uma vez no código e tam
 - [x] Use the default response api.
 - [x] Create students routes.
 - [ ] Create `swagger` documentation.
-- [ ] Create tests.
+- [x] Create unit tests.
 
 
 #### TO DO WEB
 - [x] Install `vuetify` and config theme colors.
 - [x] Create Login page.
 - [x] Create Register page.
-- [ ] Create Dashboard page.
-- [ ] Create Students page.
+- [x] Create Dashboard page.
+- [x] Create Students page.
 - [x] Configure `vue-router`.
-- [ ] Configure `cypress` and automatized tests.
+- [x] Configure `cypress` and automatized tests.
 - [x] Create middleware authenticate private routes.
-- [ ] Adding `sweet-alert2` for return messages in application.
+- [x] Adding `sweet-alert2` for return messages in application.
 - [x] Install axios and configure `api.ts`
 
 ---

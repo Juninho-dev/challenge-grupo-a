@@ -52,7 +52,7 @@
         @click="register"
         :loading="loading"
       >
-        Entrar
+        Cadastrar
       </v-btn>
     </v-card-actions>
   </v-card>

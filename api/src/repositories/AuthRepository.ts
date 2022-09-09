@@ -3,7 +3,7 @@ import { prisma } from "../database/client";
 import { compare, hash } from "bcrypt";
 import { generateToken } from "../helpers/generateToken";
 
-interface ICreateUser {
+export interface ICreateUser {
   name: string;
   email: string;
   password: string;
