@@ -58,7 +58,7 @@ describe("Update Student", () => {
         user_id: userCreated.id,
       };
 
-      const createdStudent = await studentRepository.create(student);
+      await studentRepository.create(student);
 
       await studentRepository.update({
         name: "John Doe Updated",
@@ -66,7 +66,6 @@ describe("Update Student", () => {
         id: 10,
         user_id: userCreated.id,
       });
-
     }).rejects.toEqual(Error("Aluno não encontrado"));
   });
 });

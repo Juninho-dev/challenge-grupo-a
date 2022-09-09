@@ -25,12 +25,10 @@ export const apiMessage = (
   isSuccess: boolean,
   code: number,
   message?: string,
-  payload?: any
-) => {
-  return {
-    isSuccess,
-    code,
-    message,
-    payload,
-  };
-};
+  payload?: any,
+) => ({
+  isSuccess,
+  code,
+  message,
+  payload,
+});

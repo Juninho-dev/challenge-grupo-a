@@ -1,6 +1,7 @@
 // UserRepository class with prisma client
-import { prisma } from "../database/client";
 import { compare, hash } from "bcrypt";
+
+import { prisma } from "../database/client";
 import { generateToken } from "../helpers/generateToken";
 
 export interface ICreateUser {
@@ -54,7 +55,7 @@ export class AuthRepository {
       throw new Error("Senha incorreta");
     }
 
-    const token = generateToken({ email }, String(user.id));
+    const token = generateToken(String(user.id), { email });
 
     return {
       token,

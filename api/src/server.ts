@@ -1,9 +1,10 @@
 import "express-async-errors";
+import cors from "cors";
 import express from "express";
+
+import { errorMiddleware } from "./middleware/errorMiddleware";
 import AuthRoutes from "./routes/auth.routes";
 import StudentsRoutes from "./routes/students.routes";
-import { errorMiddleware } from "./middleware/errorMiddleware";
-import cors from "cors";
 
 const app = express();
 

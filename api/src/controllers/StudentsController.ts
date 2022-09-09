@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
-import { validationResult } from "express-validator";
-import { apiMessage } from "../helpers/error";
-import { StudentsRepository } from "../repositories/StudentsRepository";
+import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
+
+import { apiMessage } from '../helpers/error';
+import { StudentsRepository } from '../repositories/StudentsRepository';
 
 export class StudentsController {
   async index(req: Request, res: Response) {
@@ -10,18 +11,20 @@ export class StudentsController {
     const studentsRepository = new StudentsRepository();
     const students = await studentsRepository.index(Number(user_id));
 
-    return res.send(apiMessage(true, 200, "Students", students));
+    return res.send(apiMessage(true, 200, 'Students', students));
   }
 
   async create(req: Request, res: Response) {
     const errors = validationResult(req);
     const { user_id } = req;
-    const { name, email, cpf, ra } = req.body;
+    const {
+      name, email, cpf, ra,
+    } = req.body;
 
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .send(apiMessage(false, 422, "Validation error", errors.array()));
+        .send(apiMessage(false, 422, 'Validation error', errors.array()));
     }
 
     const studentsRepository = new StudentsRepository();
@@ -33,7 +36,7 @@ export class StudentsController {
       ra,
     });
 
-    return res.send(apiMessage(true, 201, "Aluno criado", student));
+    return res.send(apiMessage(true, 201, 'Aluno criado', student));
   }
 
   async update(req: Request, res: Response) {
@@ -45,7 +48,7 @@ export class StudentsController {
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .send(apiMessage(false, 422, "Validation error", errors.array()));
+        .send(apiMessage(false, 422, 'Validation error', errors.array()));
     }
 
     const studentsRepository = new StudentsRepository();
@@ -56,7 +59,7 @@ export class StudentsController {
       id: Number(id),
     });
 
-    return res.send(apiMessage(true, 200, "Aluno atualizado", student));
+    return res.send(apiMessage(true, 200, 'Aluno atualizado', student));
   }
 
   async delete(req: Request, res: Response) {
@@ -66,9 +69,9 @@ export class StudentsController {
     const studentsRepository = new StudentsRepository();
     const student = await studentsRepository.delete(
       Number(id),
-      Number(user_id)
+      Number(user_id),
     );
 
-    return res.send(apiMessage(true, 200, "Aluno deletado", student));
+    return res.send(apiMessage(true, 200, 'Aluno deletado', student));
   }
 }

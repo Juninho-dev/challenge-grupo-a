@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import { StudentsController } from "../controllers/StudentsController";
 import { authenticateToken } from "../middleware/authenticateToken";
 import StudentsValidator from "../validators/StudentsValidator";
@@ -11,13 +12,13 @@ router.post(
   "/students",
   StudentsValidator.validate("createStudent"),
   authenticateToken,
-  studentsController.create
+  studentsController.create,
 );
 router.put(
   "/students/:id",
   StudentsValidator.validate("updateStudent"),
   authenticateToken,
-  studentsController.update
+  studentsController.update,
 );
 router.delete("/students/:id", authenticateToken, studentsController.delete);
 

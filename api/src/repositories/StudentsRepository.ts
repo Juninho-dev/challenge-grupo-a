@@ -20,7 +20,6 @@ export class StudentsRepository {
   }
 
   async create({ name, user_id, email, cpf, ra }: IStudent) {
-
     const findStudent = await prisma.student.findFirst({
       where: {
         ra,
@@ -74,6 +73,6 @@ export class StudentsRepository {
         id,
       },
     });
-    return 'ok';
+    return "ok";
   }
 }

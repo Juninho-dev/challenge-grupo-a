@@ -1,11 +1,14 @@
 import { User } from "@prisma/client";
+
 import { generateToken } from "../helpers/generateToken";
 import { AuthRepository, ICreateUser } from "../repositories/AuthRepository";
 
 export class AuthRepositoryInMemory implements AuthRepository {
   private users: User[] = [];
 
-  async register(user: Omit<User, "id" | "created_at" | "updated_at">): Promise<User> {
+  async register(
+    user: Omit<User, "id" | "created_at" | "updated_at">,
+  ): Promise<User> {
     const newUser = {
       ...user,
       id: Math.floor(Math.random() * 100),
@@ -13,7 +16,9 @@ export class AuthRepositoryInMemory implements AuthRepository {
       updated_at: new Date(),
     };
 
-    const userAlreadyExists = this.users.find((user) => user.email === newUser.email);
+    const userAlreadyExists = this.users.find(
+      (user) => user.email === newUser.email,
+    );
 
     if (userAlreadyExists) {
       throw new Error("Usuário já existe");
@@ -38,7 +43,7 @@ export class AuthRepositoryInMemory implements AuthRepository {
       throw new Error("Senha incorreta");
     }
 
-    const token = generateToken({ email }, String(user.id));
+    const token = generateToken(String(user.id), { email });
 
     return {
       token,

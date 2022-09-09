@@ -10,7 +10,7 @@ const authController = new AuthController();
 router.post(
   "/register",
   AuthValidator.validate("register"),
-  authController.register
+  authController.register,
 );
 
 router.post("/login", AuthValidator.validate("login"), authController.login);

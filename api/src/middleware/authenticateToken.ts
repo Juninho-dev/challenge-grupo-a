@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
+
 import { apiMessage } from "../helpers/error";
 
 interface IPayload {
@@ -9,7 +10,7 @@ interface IPayload {
 export function authenticateToken(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const authHeader = req.headers.authorization;
 

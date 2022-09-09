@@ -27,6 +27,9 @@ class StudentsValidator {
           body("email").isString().withMessage("Email deve ser uma string"),
         ];
       }
+      default: {
+        return [];
+      }
     }
   };
 }

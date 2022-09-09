@@ -29,9 +29,12 @@ describe("Delete Student", () => {
 
     const createdStudent = await studentRepository.create(student);
 
-    const studentDeleted = await studentRepository.delete(createdStudent.id, userCreated.id);
+    const studentDeleted = await studentRepository.delete(
+      createdStudent.id,
+      userCreated.id
+    );
 
-    expect(studentDeleted).toEqual('ok');
+    expect(studentDeleted).toEqual("ok");
   });
 
   it("should not be able to delete a student with not exists", async () => {
@@ -52,10 +55,9 @@ describe("Delete Student", () => {
         user_id: userCreated.id,
       };
 
-      const createdStudent = await studentRepository.create(student);
+      await studentRepository.create(student);
 
       await studentRepository.delete(10, userCreated.id);
-
     }).rejects.toEqual(Error("Aluno não encontrado"));
   });
 });

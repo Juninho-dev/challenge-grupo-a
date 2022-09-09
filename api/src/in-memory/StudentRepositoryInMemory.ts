@@ -1,20 +1,23 @@
-import { Student } from "@prisma/client";
+import { Student } from '@prisma/client';
+
 import {
   IStudent,
   StudentsRepository,
-} from "../repositories/StudentsRepository";
+} from '../repositories/StudentsRepository';
 
 export class StudentRepositoryInMemory implements StudentsRepository {
   private students: Student[] = [];
 
   async index(userId: number): Promise<Student[]> {
     const students = this.students.filter(
-      (student) => student.userId === userId
+      (student) => student.userId === userId,
     );
     return students;
   }
 
-  async create({ name, user_id, email, cpf, ra }: IStudent): Promise<Student> {
+  async create({
+    name, user_id, email, cpf, ra,
+  }: IStudent): Promise<Student> {
     const student = {
       id: Math.random(),
       name,
@@ -27,20 +30,22 @@ export class StudentRepositoryInMemory implements StudentsRepository {
     const alreadyExists = this.students.find((student) => student.ra === ra);
 
     if (alreadyExists) {
-      throw new Error("Aluno já cadastrado");
+      throw new Error('Aluno já cadastrado');
     }
 
     this.students.push(student);
     return student;
   }
 
-  async update({ name, user_id, email, id }: Omit<IStudent, "cpf" | "ra">) {
+  async update({
+    name, user_id, email, id,
+  }: Omit<IStudent, 'cpf' | 'ra'>) {
     const studentIndex = this.students.findIndex(
-      (student) => student.id === id
+      (student) => student.id === id,
     );
 
     if (studentIndex === -1) {
-      throw new Error("Aluno não encontrado");
+      throw new Error('Aluno não encontrado');
     }
 
     const student = {
@@ -60,14 +65,14 @@ export class StudentRepositoryInMemory implements StudentsRepository {
 
   async delete(id: number, userId: number) {
     const studentIndex = this.students.findIndex(
-      (student) => student.id === id && student.userId === userId
+      (student) => student.id === id && student.userId === userId,
     );
 
     if (studentIndex === -1) {
-      throw new Error("Aluno não encontrado");
+      throw new Error('Aluno não encontrado');
     }
     this.students.splice(studentIndex, 1);
 
-    return "ok";
+    return 'ok';
   }
 }

@@ -19,6 +19,9 @@ class AuthValidator {
           body("password").notEmpty().withMessage("Senha é obrigatória"),
         ];
       }
+      default: {
+        return [];
+      }
     }
   };
 }
